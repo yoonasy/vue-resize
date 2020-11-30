@@ -26,7 +26,7 @@ export default defineComponent({
     let _w = 0
     let _h = 0
     const elRef = ref(null)
-    let _resizeObject = {}
+    let _resizeObject = null
 
     const compareAndNotify = () => {
       if (_w !== elRef.value.offsetWidth || _h !== elRef.value.offsetHeight) {
