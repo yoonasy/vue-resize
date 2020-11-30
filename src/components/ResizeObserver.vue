@@ -58,10 +58,10 @@ export default defineComponent({
       }
     }
 
-    onMounted(() => {
+    onMounted(async () => {
       initCompat()
 
-      nextTick(() => {
+      await nextTick(() => {
         _w = elRef.value.offsetWidth
         _h = elRef.value.offsetHeight
       })
@@ -70,7 +70,7 @@ export default defineComponent({
       _resizeObject = object
 
       object.setAttribute('aria-hidden', 'true')
-      object.setAttribute('tabindex', -1)
+      object.setAttribute('tabindex', '-1')
       object.onload = addResizeHandlers
       object.type = 'text/html'
 
@@ -110,7 +110,7 @@ export default defineComponent({
   opacity: 0;
 }
 
-.resize-observer >>> object {
+.resize-observer ::v-deep(object) {
   display: block;
   position: absolute;
   top: 0;

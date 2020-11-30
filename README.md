@@ -1,4 +1,4 @@
-# vue-resize
+# vue3-resize
 
 [![npm](https://img.shields.io/npm/v/vue-resize.svg) ![npm](https://img.shields.io/npm/dm/vue-resize.svg)](https://www.npmjs.com/package/vue-resize)
 [![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/)
@@ -22,7 +22,7 @@ Detect DOM element resizing
 # Installation
 
 ```
-npm install --save vue-resize
+npm install --save vue3-resize
 ```
 
 ## Module import
@@ -30,14 +30,14 @@ npm install --save vue-resize
 **⚠️ You need to include the package CSS:**
 
 ```js
-import 'vue-resize/dist/vue-resize.css'
+import 'vue3-resize/dist/vue3-resize.css'
 ```
 
 Then import the package and install it into Vue:
 
 ```javascript
 import Vue from 'vue'
-import VueResize from 'vue-resize'
+import VueResize from 'vue3-resize'
 
 Vue.use(VueResize)
 ```
@@ -46,7 +46,7 @@ Or:
 
 ```javascript
 import Vue from 'vue'
-import { ResizeObserver } from 'vue-resize'
+import { ResizeObserver } from 'vue3-resize'
 
 Vue.component('resize-observer', ResizeObserver)
 ```
@@ -54,10 +54,10 @@ Vue.component('resize-observer', ResizeObserver)
 ## Browser
 
 ```html
-<link rel="stylesheet" href="vue-resize/dist/vue-resize.css"/>
+<link rel="stylesheet" href="vue3-resize/dist/vue3-resize.css"/>
 
 <script src="vue.js"></script>
-<script src="vue-resize/dist/vue-resize.min.js"></script>
+<script src="vue3-resize/dist/vue3-resize.min.js"></script>
 ```
 
 The plugin should be auto-installed. If not, you can install it manually:

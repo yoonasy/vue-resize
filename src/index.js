@@ -2,7 +2,6 @@ import ResizeObserver from './components/ResizeObserver.vue'
 
 // Install the components
 export function install (Vue) {
-  Vue.component('resize-observer', ResizeObserver)
   Vue.component('ResizeObserver', ResizeObserver)
 }
 
@@ -12,8 +11,7 @@ export {
 
 // Plugin
 const plugin = {
-  // eslint-disable-next-line no-undef
-  version: VERSION,
+  version: '0.0.1',
   install,
 }
 
