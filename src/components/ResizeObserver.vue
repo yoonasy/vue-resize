@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="elRef"
     class="resize-observer"
     tabindex="-1"
   />
@@ -7,6 +8,7 @@
 
 <script>
 import { getInternetExplorerVersion } from '../utils/compatibility'
+import { defineComponent, onUnmounted, onMounted, nextTick, ref } from 'vue'
 
 let isIE
 
@@ -17,63 +19,79 @@ function initCompat () {
   }
 }
 
-export default {
+export default defineComponent({
   name: 'ResizeObserver',
 
-  mounted () {
-    initCompat()
-    this.$nextTick(() => {
-      this._w = this.$el.offsetWidth
-      this._h = this.$el.offsetHeight
-    })
-    const object = document.createElement('object')
-    this._resizeObject = object
-    object.setAttribute('aria-hidden', 'true')
-    object.setAttribute('tabindex', -1)
-    object.onload = this.addResizeHandlers
-    object.type = 'text/html'
-    if (isIE) {
-      this.$el.appendChild(object)
-    }
-    object.data = 'about:blank'
-    if (!isIE) {
-      this.$el.appendChild(object)
-    }
-  },
+  setup (props, { emit }) {
+    let _w = 0
+    let _h = 0
+    const elRef = ref(null)
+    let _resizeObject = {}
 
-  beforeDestroy () {
-    this.removeResizeHandlers()
-  },
+    const compareAndNotify = () => {
+      if (_w !== elRef.value.offsetWidth || _h !== elRef.value.offsetHeight) {
+        _w = elRef.value.offsetWidth
+        _h = elRef.value.offsetHeight
 
-  methods: {
-    compareAndNotify () {
-      if (this._w !== this.$el.offsetWidth || this._h !== this.$el.offsetHeight) {
-        this._w = this.$el.offsetWidth
-        this._h = this.$el.offsetHeight
-        this.$emit('notify', {
-          width: this._w,
-          height: this._h,
+        emit('notify', {
+          width: _w,
+          height: _h,
         })
       }
-    },
+    }
 
-    addResizeHandlers () {
-      this._resizeObject.contentDocument.defaultView.addEventListener('resize', this.compareAndNotify)
-      this.compareAndNotify()
-    },
+    const addResizeHandlers = () => {
+      _resizeObject.contentDocument.defaultView.addEventListener('resize', compareAndNotify)
+      compareAndNotify()
+    }
 
-    removeResizeHandlers () {
-      if (this._resizeObject && this._resizeObject.onload) {
-        if (!isIE && this._resizeObject.contentDocument) {
-          this._resizeObject.contentDocument.defaultView.removeEventListener('resize', this.compareAndNotify)
+    const removeResizeHandlers = () => {
+      if (_resizeObject && _resizeObject.onload) {
+        if (!isIE && _resizeObject.contentDocument) {
+          _resizeObject.contentDocument.defaultView.removeEventListener('resize', compareAndNotify)
         }
-        this.$el.removeChild(this._resizeObject)
-        this._resizeObject.onload = null
-        this._resizeObject = null
+
+        elRef.value.removeChild(_resizeObject)
+
+        _resizeObject.onload = null
+        _resizeObject = null
       }
-    },
+    }
+
+    onMounted(() => {
+      initCompat()
+
+      nextTick(() => {
+        _w = elRef.value.offsetWidth
+        _h = elRef.value.offsetHeight
+      })
+
+      const object = document.createElement('object')
+      _resizeObject = object
+
+      object.setAttribute('aria-hidden', 'true')
+      object.setAttribute('tabindex', -1)
+      object.onload = addResizeHandlers
+      object.type = 'text/html'
+
+      if (isIE) {
+        elRef.value.appendChild(object)
+      }
+
+      object.data = 'about:blank'
+
+      if (!isIE) {
+        elRef.value.appendChild(object)
+      }
+    })
+
+    onUnmounted(() => {
+      removeResizeHandlers()
+    })
+
+    return { elRef }
   },
-}
+})
 </script>
 
 <style scoped>
