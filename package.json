@@ -1,7 +1,7 @@
 {
   "name": "vue3-resize",
   "description": "Detect DOM element resizing",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "author": {
     "name": "Guillaume Chau",
     "email": "guillaume.b.chau@gmail.com"
