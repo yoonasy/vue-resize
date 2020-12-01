@@ -1,8 +1,8 @@
-import ResizeObserver from './components/ResizeObserver'
+import ResizeObserver from './package/ResizeObserver'
 import { version } from '../package.json'
 
 // Install the components
-const install = (app, options = {}) => {
+const install = (app) => {
   app.use(ResizeObserver)
 }
 

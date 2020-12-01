@@ -1,14 +1,14 @@
 <template>
   <div
     ref="elRef"
-    class="resize-observer"
+    class="vue3-resize-observer"
     tabindex="-1"
   />
 </template>
 
 <script>
 import { onMounted, ref, onBeforeUnmount } from 'vue'
-import { getInternetExplorerVersion } from '../utils/compatibility'
+import { getInternetExplorerVersion } from '../../utils/compatibility'
 
 let isIE
 
@@ -106,7 +106,7 @@ export default {
 </script>
 
 <style>
-.resize-observer {
+.vue3-resize-observer {
   position: absolute;
   top: 0;
   left: 0;
@@ -121,7 +121,7 @@ export default {
   opacity: 0;
 }
 
-.resize-observer ::v-deep(object) {
+.vue3-resize-observer object {
   display: block;
   position: absolute;
   top: 0;
