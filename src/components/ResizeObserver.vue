@@ -1,6 +1,14 @@
+<template>
+  <div
+    ref="elRef"
+    class="resize-observer"
+    tabindex="-1"
+  />
+</template>
+
+<script type="text/babel">
+import { onMounted, ref, onBeforeUnmount, defineComponent } from 'vue'
 import { getInternetExplorerVersion } from '../utils/compatibility'
-import { defineComponent, onUnmounted, onMounted, ref, createVNode } from 'vue'
-import './style.css'
 
 let isIE
 
@@ -77,19 +85,40 @@ export default defineComponent({
       }
     })
 
-    onUnmounted(() => {
+    onBeforeUnmount(() => {
       removeResizeHandlers()
     })
 
-    // return { elRef }
-
-    return () => {
-      return createVNode('div', {
-        ref: elRef.value,
-        class: 'resize-observer',
-        tabindex: '-1',
-      },
-      )
-    }
+    return { elRef }
   },
 })
+</script>
+
+<style scoped>
+.resize-observer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  pointer-events: none;
+  display: block;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.resize-observer ::v-deep(object) {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+</style>

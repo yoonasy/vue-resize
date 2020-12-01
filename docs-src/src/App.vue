@@ -48,7 +48,7 @@ export default defineComponent({
 
     return {
       count,
-      show: true,
+      show: ref(true),
       width,
 
       handleResize,

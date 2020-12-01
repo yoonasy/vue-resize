@@ -16,6 +16,7 @@ export default {
   plugins: [
     resolve({
       mainFields: ['module', 'jsnext', 'main', 'browser'],
+      extensions: ['.vue', '.jsx'],
     }),
     eslint({
       include: ['src/**/*.{js,vue}'],
@@ -29,7 +30,7 @@ export default {
     css({
       output: styles => {
         fs.ensureDirSync('dist')
-        fs.writeFileSync('dist/vue-resize.css', new CleanCSS().minify(styles).styles)
+        fs.writeFileSync('dist/vue3-resize.css', new CleanCSS().minify(styles).styles)
       },
     }),
     babel({
@@ -43,5 +44,12 @@ export default {
   watch: {
     include: 'src/**',
   },
-  external: [],
+  output: {
+    sourcemap: false,
+    externalLiveBindings: false,
+    globals: {
+      vue: 'Vue',
+    },
+  },
+  external: ['vue'],
 }

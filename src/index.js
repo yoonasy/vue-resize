@@ -1,4 +1,4 @@
-import ResizeObserver from './components/ResizeObserver'
+import ResizeObserver from './components/ResizeObserver.vue'
 
 // Install the components
 export function install (app) {
