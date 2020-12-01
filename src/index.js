@@ -1,21 +1,20 @@
-import ResizeObserver from './components/ResizeObserver.vue'
+import ResizeObserver from './components/ResizeObserver'
 import { version } from '../package.json'
 
 // Install the components
-export function install (app) {
-  const name = 'ResizeObserver'
-
-  app.use(name, ResizeObserver)
-}
-
-export {
-  ResizeObserver,
+const install = (app, options = {}) => {
+  app.use(ResizeObserver)
 }
 
 // Plugin
-const plugin = {
+const Vue3Resize = {
   version,
   install,
 }
 
-export default plugin
+export {
+  ResizeObserver,
+  install,
+}
+
+export default Vue3Resize

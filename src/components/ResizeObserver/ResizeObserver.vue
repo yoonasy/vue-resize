@@ -105,7 +105,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .resize-observer {
   position: absolute;
   top: 0;
