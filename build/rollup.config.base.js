@@ -2,6 +2,7 @@ import babel from 'rollup-plugin-babel'
 import resolve from '@rollup/plugin-node-resolve'
 import vue from 'rollup-plugin-vue'
 import cjs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
 import replace from '@rollup/plugin-replace'
 import { eslint } from 'rollup-plugin-eslint'
 import css from 'rollup-plugin-css-only'
@@ -37,6 +38,7 @@ export default {
       exclude: 'node_modules/**',
     }),
     cjs(),
+    json(),
     replace({
       VERSION: JSON.stringify(config.version),
     }),
