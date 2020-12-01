@@ -8,7 +8,7 @@ module.exports = {
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
   extends: [
     'standard',
-    'plugin:vue/recommended',
+    'plugin:vue/vue3-recommended',
   ],
   // required to lint *.vue files
   plugins: [
@@ -27,5 +27,6 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     // trailing comma
     'comma-dangle': ['error', 'always-multiline'],
+    'vue/comment-directive': 0,
   }
 }

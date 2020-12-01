@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  baseUrl: '/vue-resize/',
+  publicPath: '/vue3-resize/',
   outputDir: '../docs',
   devServer: {
     historyApiFallback: true,

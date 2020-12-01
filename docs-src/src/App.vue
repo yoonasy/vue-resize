@@ -1,46 +1,61 @@
 <template>
   <div id="app">
-    <div class="counter">Resize: {{ count }}</div>
+    <div class="counter">
+      Resize: {{ count }}
+    </div>
     <div>
       <button
         class="toggle"
-        @click="show = !show">Toggle</button>
+        @click="show = !show"
+      >
+        Toggle
+      </button>
       <button
         class="change"
-        @click="changeSize">Change CSS size</button>
+        @click="changeSize"
+      >
+        Change CSS size
+      </button>
     </div>
     <div
       v-if="show"
-      class="resized">
-      <textarea :style="{ width: `${width}px` }"/>
-      <resize-observer @notify="handleResize"/>
+      class="resized"
+    >
+      <textarea :style="{ width: `${width}px` }" />
+      <ResizeObserver @notify="handleResize" />
     </div>
   </div>
 </template>
 
 <script>
-export default {
+import { defineComponent, ref } from 'vue'
+
+export default defineComponent({
   name: 'App',
 
-  data () {
+  setup () {
+    const count = ref(0)
+    const width = ref(300)
+
+    const handleResize = () => {
+      count.value = count.value + 1
+      console.log('handle')
+    }
+
+    const changeSize = () => {
+      width.value = Math.round(Math.random() * 400) + 100
+    }
+
     return {
-      count: 0,
+      count,
       show: true,
-      width: 300,
+      width,
+
+      handleResize,
+      changeSize,
     }
   },
-
-  methods: {
-    handleResize () {
-      this.count++
-      console.log('handle')
-    },
-
-    changeSize () {
-      this.width = Math.round(Math.random() * 400) + 100
-    },
-  },
-}
+})
 </script>
 
 <style lang="stylus">

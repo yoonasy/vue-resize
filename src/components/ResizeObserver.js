@@ -1,14 +1,6 @@
-<template>
-  <div
-    ref="elRef"
-    class="resize-observer"
-    tabindex="-1"
-  />
-</template>
-
-<script>
 import { getInternetExplorerVersion } from '../utils/compatibility'
-import { defineComponent, onUnmounted, onMounted, nextTick, ref } from 'vue'
+import { defineComponent, onUnmounted, onMounted, ref, createVNode } from 'vue'
+import './style.css'
 
 let isIE
 
@@ -21,6 +13,8 @@ function initCompat () {
 
 export default defineComponent({
   name: 'ResizeObserver',
+
+  emits: ['notify'],
 
   setup (props, { emit }) {
     let _w = 0
@@ -61,16 +55,14 @@ export default defineComponent({
     onMounted(() => {
       initCompat()
 
-      nextTick(() => {
-        _w = elRef.value.offsetWidth
-        _h = elRef.value.offsetHeight
-      })
+      _w = elRef.value.offsetWidth
+      _h = elRef.value.offsetHeight
 
       const object = document.createElement('object')
       _resizeObject = object
 
       object.setAttribute('aria-hidden', 'true')
-      object.setAttribute('tabindex', -1)
+      object.setAttribute('tabindex', '-1')
       object.onload = addResizeHandlers
       object.type = 'text/html'
 
@@ -89,36 +81,15 @@ export default defineComponent({
       removeResizeHandlers()
     })
 
-    return { elRef }
+    // return { elRef }
+
+    return () => {
+      return createVNode('div', {
+        ref: elRef.value,
+        class: 'resize-observer',
+        tabindex: '-1',
+      },
+      )
+    }
   },
 })
-</script>
-
-<style scoped>
-.resize-observer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  border: none;
-  background-color: transparent;
-  pointer-events: none;
-  display: block;
-  overflow: hidden;
-  opacity: 0;
-}
-
-.resize-observer >>> object {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: -1;
-}
-</style>
