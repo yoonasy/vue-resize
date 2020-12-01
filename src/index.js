@@ -5,11 +5,7 @@ import { version } from '../package.json'
 export function install (app) {
   const name = 'ResizeObserver'
 
-  if (app.use) {
-    app.use(name, ResizeObserver)
-  } else {
-    app.component(name, ResizeObserver)
-  }
+  app.use(name, ResizeObserver)
 }
 
 export {
