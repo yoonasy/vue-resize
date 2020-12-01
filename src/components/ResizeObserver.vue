@@ -6,8 +6,8 @@
   />
 </template>
 
-<script type="text/babel">
-import { onMounted, ref, onBeforeUnmount, defineComponent } from 'vue'
+<script>
+import { onMounted, ref, onBeforeUnmount } from 'vue'
 import { getInternetExplorerVersion } from '../utils/compatibility'
 
 let isIE
@@ -19,7 +19,7 @@ function initCompat () {
   }
 }
 
-export default defineComponent({
+export default {
   name: 'ResizeObserver',
 
   props: {
@@ -102,7 +102,7 @@ export default defineComponent({
 
     return { elRef }
   },
-})
+}
 </script>
 
 <style scoped>
