@@ -24,7 +24,7 @@
     "build:browser": "rollup --config build/rollup.config.browser.js",
     "build:es": "rollup --config build/rollup.config.es.js",
     "build:umd": "rollup --config build/rollup.config.umd.js",
-    "prepublishOnly": "yarn run build && yarn version --patch",
+    "prepublishOnly": "yarn run build",
     "dev": "cross-env NODE_ENV=development rollup --config build/rollup.config.es.js --watch",
     "test": "yarn run build && cd ./docs-src && yarn run test"
   },
