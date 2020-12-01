@@ -6,7 +6,7 @@ export function install (app) {
   const name = 'ResizeObserver'
   app.component(name, ResizeObserver)
 
-  app.config.isCustomElement = name
+  app.config.isCustomElement = () => name
 }
 
 export {
