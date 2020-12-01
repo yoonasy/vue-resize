@@ -1,7 +1,8 @@
 # vue3-resize
 
-[![npm](https://img.shields.io/npm/v/vue-resize.svg) ![npm](https://img.shields.io/npm/dm/vue-resize.svg)](https://www.npmjs.com/package/vue-resize)
-[![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/)
+[![npm](https://img.shields.io/npm/v/vue3-resize.svg)
+![npm](https://img.shields.io/npm/dm/vue3-resize.svg)](https://www.npmjs.com/package/vue-resize)
+[![vue3](https://img.shields.io/badge/vue-3.x-brightgreen.svg)](https://v3.vuejs.org/)
 
 Detect DOM element resizing
 
@@ -36,19 +37,31 @@ import 'vue3-resize/dist/vue3-resize.css'
 Then import the package and install it into Vue:
 
 ```javascript
-import Vue from 'vue'
+// main.js
+import { createApp } from 'vue'
+import App from './App.vue'
 import Vue3Resize from 'vue3-resize'
 
-Vue.use(Vue3Resize)
+createApp(App)
+  .use(Vue3Resize)
+  .mount('#app')
 ```
 
 Or:
 
 ```javascript
-import Vue from 'vue'
+import { createApp } from 'vue'
+import App from './App.vue'
 import { ResizeObserver } from 'vue3-resize'
 
-Vue.component('resize-observer', ResizeObserver)
+const app = createApp(App)
+
+app.component('resize-observer', ResizeObserver)
+// or
+app.component(ResizeObserver.name, ResizeObserver)
+
+
+app.mount('#app')
 ```
 
 ## Browser
@@ -63,7 +76,7 @@ Vue.component('resize-observer', ResizeObserver)
 The plugin should be auto-installed. If not, you can install it manually:
 
 ```javascript
-Vue.use(Vue3Resize)
+app.use(Vue3Resize)
 ```
 
 Or:
@@ -84,25 +97,21 @@ Listen to the `notify` event that is fired when the above DOM element is resized
 <template>
   <div class="demo">
     <h1>Hello world!</h1>
-    <resize-observer @notify="handleResize" />
+    <resize-observer @notify="handleResize" :showTrigger="true" />
   </div>
 </template>
 
 <script>
 export default {
-  methods: {
-    handleResize ({ width, height }) {
-      console.log('resized', width, height)
+  setup() {
+    return {
+      handleResize ({ width, height }) {
+        console.log('resized', width, height)
+      }
     }
   }
 }
 </script>
-
-<style scoped>
-.demo {
-  position: relative;
-}
-</style>
 ```
 
 ---
