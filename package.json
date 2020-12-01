@@ -20,7 +20,7 @@
   "module": "dist/vue3-resize.esm.js",
   "unpkg": "dist/vue3-resize.min.js",
   "scripts": {
-    "build": "rimraf dist/ && yarn run build:browser && yarn run build:es && yarn run build:umd",
+    "build": "rimraf dist/* && yarn run build:browser && yarn run build:es && yarn run build:umd",
     "build:browser": "rollup --config build/rollup.config.browser.js",
     "build:es": "rollup --config build/rollup.config.es.js",
     "build:umd": "rollup --config build/rollup.config.umd.js",
