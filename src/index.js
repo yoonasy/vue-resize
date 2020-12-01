@@ -4,9 +4,12 @@ import { version } from '../package.json'
 // Install the components
 export function install (app) {
   const name = 'ResizeObserver'
-  app.component(name, ResizeObserver)
 
-  app.config.isCustomElement = () => name
+  if (app.use) {
+    app.use(name, ResizeObserver)
+  } else {
+    app.component(name, ResizeObserver)
+  }
 }
 
 export {
