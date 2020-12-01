@@ -22,6 +22,13 @@ function initCompat () {
 export default defineComponent({
   name: 'ResizeObserver',
 
+  props: {
+    showTrigger: {
+      type: Boolean,
+      default: true,
+    },
+  },
+
   emits: ['notify'],
 
   setup (props, { emit }) {
@@ -82,6 +89,10 @@ export default defineComponent({
 
       if (!isIE) {
         elRef.value.appendChild(object)
+      }
+
+      if (props.showTrigger) {
+        compareAndNotify()
       }
     })
 
