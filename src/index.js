@@ -1,4 +1,5 @@
 import ResizeObserver from './components/ResizeObserver.vue'
+import { version } from '../package.json'
 
 // Install the components
 export function install (app) {
@@ -14,7 +15,7 @@ export {
 
 // Plugin
 const plugin = {
-  version: '0.0.1',
+  version,
   install,
 }
 
