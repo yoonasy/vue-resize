@@ -1,12 +1,10 @@
 import '../../dist/vue3-resize.css'
 import { createApp } from 'vue'
-import Resize, { install, ResizeObserver } from '../../'
+import Resize from '../../src/components/ResizeObserver'
 import App from './App.vue'
-
-console.log(Resize, install, ResizeObserver)
 
 const app = createApp(App)
 
-app.use(Resize)
+app.component(Resize.name, Resize)
 
 app.mount('#app')

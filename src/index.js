@@ -1,8 +1,11 @@
-import ResizeObserver from './components/ResizeObserver.vue'
+import ResizeObserver from './components/ResizeObserver'
 
 // Install the components
-export function install (Vue) {
-  Vue.component('ResizeObserver', ResizeObserver)
+export function install (app) {
+  const name = 'ResizeObserver'
+  app.component(name, ResizeObserver)
+
+  app.config.isCustomElement = name
 }
 
 export {

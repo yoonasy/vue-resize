@@ -29,7 +29,7 @@ export default {
     css({
       output: styles => {
         fs.ensureDirSync('dist')
-        fs.writeFileSync('dist/vue3-resize.css', new CleanCSS().minify(styles).styles)
+        fs.writeFileSync('dist/vue-resize.css', new CleanCSS().minify(styles).styles)
       },
     }),
     babel({

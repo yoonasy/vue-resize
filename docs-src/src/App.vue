@@ -22,7 +22,7 @@
       class="resized"
     >
       <textarea :style="{ width: `${width}px` }" />
-      <resize-observer @notify="handleResize" />
+      <ResizeObserver @notify="handleResize" />
     </div>
   </div>
 </template>
@@ -38,7 +38,7 @@ export default defineComponent({
     const width = ref(300)
 
     const handleResize = () => {
-      count.value++
+      count.value = count.value + 1
       console.log('handle')
     }
 

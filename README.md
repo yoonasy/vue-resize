@@ -37,9 +37,9 @@ Then import the package and install it into Vue:
 
 ```javascript
 import Vue from 'vue'
-import VueResize from 'vue3-resize'
+import Vue3Resize from 'vue3-resize'
 
-Vue.use(VueResize)
+Vue.use(Vue3Resize)
 ```
 
 Or:
@@ -63,13 +63,13 @@ Vue.component('resize-observer', ResizeObserver)
 The plugin should be auto-installed. If not, you can install it manually:
 
 ```javascript
-Vue.use(VueResize)
+Vue.use(Vue3Resize)
 ```
 
 Or:
 
 ```javascript
-Vue.component('resize-observer', VueResize.ResizeObserver)
+Vue.component('resize-observer', Vue3Resize.ResizeObserver)
 ```
 
 # Usage

@@ -4,7 +4,7 @@ import { terser } from 'rollup-plugin-terser'
 const config = Object.assign({}, base, {
   output: {
     exports: 'named',
-    name: 'VueResize',
+    name: 'Vue3Resize',
     file: 'dist/vue3-resize.min.js',
     format: 'iife',
     sourcemap: true,
