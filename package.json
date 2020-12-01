@@ -1,7 +1,7 @@
 {
   "name": "vue3-resize",
   "description": "Detect DOM element resizing",
-  "version": "0.2.0",
+  "version": "0.0.2",
   "author": {
     "name": "Guillaume Chau",
     "email": "guillaume.b.chau@gmail.com"
@@ -12,9 +12,7 @@
     "vuejs",
     "plugin"
   ],
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "license": "MIT",
   "main": "dist/vue3-resize.umd.js",
   "module": "dist/vue3-resize.esm.js",
